@@ -1,4 +1,4 @@
-class StudentController < ApplicationController
+class StudentsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
@@ -16,7 +16,7 @@ class StudentController < ApplicationController
         if @student.save
           render :json => @student
         else
-          render :json => { :errors => @student.errors.messages }, :status => 422
+          render :json => { errors: @student.errors.messages }, status: 422
         end
       end
     end
@@ -24,7 +24,7 @@ class StudentController < ApplicationController
 
   private
 
-  def employee_params
+  def student_params
     params.require(:student).permit(:name)
   end
 end
