@@ -1,8 +1,8 @@
 <h1>Students</h1>
 <div id="students">
-  <input type="text" v-model="student.name" placeholder="name"><br>
+  <input type="text" v-model="student.name" v-on:keyup.enter="addStudent" placeholder="name"><br>
   <span style="color:red">{{ errors.name }}</span>
-  <button @click="addStudent">Add</button>
+  <!-- <button @click="addStudent">Add</button> -->
   <ul>
     <li v-for="student in students">
       {{ student.name }}
