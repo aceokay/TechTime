@@ -1,24 +1,12 @@
-# README
+# TechTime
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple tool for teachers to track and assign use of digital devices in a classroom
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Technology
+* Rails 5
+* [Vue](https://vuejs.org/) front-end
+* [Vue-Strap](https://yuche.github.io/vue-strap/) scripts for styling
+* [Bootstrap 3](http://getbootstrap.com/) CSS for styling
+* [npm-pipeline-rails](https://github.com/rstacruz/npm-pipeline-rails) asset tool
+* [Brunch](http://brunch.io/) build system
+    * Add dependencies with: npm install --save-dev plugin-name
