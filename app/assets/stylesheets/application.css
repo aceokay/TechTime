@@ -12,4 +12,6 @@
  *
  *= require_tree .
  *= require_self
+ *= require brunch/app
+ *= require bootstrap_css/bootstrap
  */

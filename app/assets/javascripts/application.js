@@ -13,4 +13,5 @@
 //= require vue
 //= require vue-router
 //= require vue-resource
+//= require brunch/app
 //= require_tree .
