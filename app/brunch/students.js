@@ -1,21 +1,5 @@
-// Vue.http.interceptors.push({
-//   request: function (request) {
-//     Vue.http.headers.common['X-CSRF-Token'] = $('[name="csrf-token"]').attr('content');
-//     return request;
-//   },
-//   response: function (response) {
-//     return response;
-//   }
-// });
-
-// A prop? Passing a student as a Vue Prop?
-// Unsure if I need this just yet, or at all!
-// Vue.component('student-line', {
-//   template: '#student-line',
-//   props: {
-//     student: Object
-//   }
-// })
+const Vue = require("vue/dist/vue.common.js");
+Vue.use(require('vue-resource'));
 
 var studentResource = Vue.resource('/students{/id}.json')
 
