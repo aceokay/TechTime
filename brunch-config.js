@@ -4,12 +4,24 @@ module.exports = {
     watched: ['app/brunch'],
     public: 'vendor/assets'
   },
-
   modules: {
     wrapper: false
   },
   files: {
-    javascripts: {joinTo: 'javascripts/brunch/app.js'},
+    javascripts: {
+      joinTo: {
+        'javascripts/brunch/app.js': /^app/,
+        'javascripts/brunch/vendor.js': /^node_modules/
+      }
+    },
     stylesheets: {joinTo: 'stylesheets/brunch/app.css'}
+  },
+  npm: {
+    globals: {Vue: 'vue'},
+    globals: {VueResource: 'vue-resource'}
+    // globals: {bootstrap: 'bootstrap-css-only'},
+    // styles: {
+    //     bootstrap: ['css/bootstrap.css']
+    // }
   }
 }

@@ -3,16 +3,22 @@
   "description": "A tool for tracking computer and iPad use in a classroom",
   "author": "Austin Kincaid",
   "version": "0.1.0",
+  "license": "MIT",
   "scripts": {
-    "start": "brunch watch",
-    "build": "brunch build --production"
+    "start": "set LOGGY_STACKS=1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "vue": "^2.2.1",
+    "vue-brunch": "^2.0.1",
+    "vue-resource": "^1.2.1",
+    "vue-router": "^2.3.0",
+    "vue-strap": "^1.1.36"
+  },
   "devDependencies": {
     "auto-reload-brunch": "^2.0.0",
     "brunch": "^2.5.1",
     "css-brunch": "^2.0.0",
     "javascript-brunch": "^2.0.0",
-    "vue-strap": "^1.1.36"
+    "loggy": "^1.0.2"
   }
 }
