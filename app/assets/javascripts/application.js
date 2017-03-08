@@ -10,8 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require vue
-//= require vue-router
-//= require vue-resource
+//= require brunch/vendor
 //= require brunch/app
-//= require_tree .
