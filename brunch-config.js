@@ -19,9 +19,5 @@ module.exports = {
   npm: {
     globals: {Vue: 'vue'},
     globals: {VueResource: 'vue-resource'}
-    // globals: {bootstrap: 'bootstrap-css-only'},
-    // styles: {
-    //     bootstrap: ['css/bootstrap.css']
-    // }
   }
 }
