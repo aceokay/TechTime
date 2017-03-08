@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
-gem 'vuejs-rails'
+# gem 'vuejs-rails' # Let's have npm handle this...
 gem 'npm-pipeline-rails'
 
 group :development, :test do
