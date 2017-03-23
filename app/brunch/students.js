@@ -1,9 +1,4 @@
-const Vue = require("vue/dist/vue.common.js");
-Vue.use(require('vue-resource'));
-
-var studentResource = Vue.resource('/students{/id}.json')
-
-var students = new Vue({
+new Vue({
   el: '#students',
   data: {
     students: [],

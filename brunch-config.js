@@ -12,6 +12,12 @@ module.exports = {
       joinTo: {
         'javascripts/brunch/app.js': /^app/,
         'javascripts/brunch/vendor.js': /^node_modules/
+      },
+      order: {
+        before: [
+          'app/brunch/vue_resources.js',
+
+        ]
       }
     },
     stylesheets: {
