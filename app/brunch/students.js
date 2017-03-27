@@ -53,10 +53,3 @@ var Students = {
     </div>
   </div>`
 }
-
-new Vue({
-  el: '#app',
-  components: {
-    'students-list': Students
-  }
-});
