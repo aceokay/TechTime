@@ -4,22 +4,19 @@ var ListRow = {
   },
   data: function() {
     return {
-      editMode: false,
-      errors: {}
+      editMode: false
     }
   },
   template: `
-  <div>
-    <div v-if="editMode">
-      <input type="text" v-model="student.name"><br>
-    </div>
-    <div v-else>
-      {{ student.name }}
-    </div>
+  <li>
     <i class="fa fa-toggle-on" aria-hidden="true"></i>
-    <button v-if="editMode" @click="updateStudent">Save</button>
-    <button v-else @click="editMode = true">Edit</button>
-  </div>
+    <span v-if="editMode">
+      <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent" ><br>
+    </span>
+    <span v-else @click="editMode = true">
+      {{ student.name }}
+    </span>
+  </li>
   `
 }
 
