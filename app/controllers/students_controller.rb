@@ -22,6 +22,19 @@ class StudentsController < ApplicationController
     end
   end
 
+  def update
+    @student = Student.find(params[:id])
+    respond_to do |format|
+      format.json do
+        if @student.update(student_params)
+          render :json => @student
+        else
+          render :json => { :errors => @student.errors.messages }, :status => 422
+        end
+      end
+    end
+  end
+
   private
 
   def student_params

@@ -1,6 +1,13 @@
 var ListRow = {
   props: {
-    student: Object
+    student: Object,
+    parentUpdateStudent: Function
+  },
+  methods: {
+    updateStudent: function() {
+      this.editMode = false;
+      this.parentUpdateStudent(this.student);
+    }
   },
   data: function() {
     return {
@@ -11,7 +18,7 @@ var ListRow = {
   <li>
     <i class="fa fa-toggle-on" aria-hidden="true"></i>
     <span v-if="editMode">
-      <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent" ><br>
+      <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent(student)" ><br>
     </span>
     <span v-else @click="editMode = true">
       {{ student.name }}
@@ -43,6 +50,13 @@ var Students = {
     )
   },
   methods: {
+    intialStudent: function() {
+      return {
+        student: {
+          name: ''
+        }
+      }
+    },
     addStudent: function () {
       var that = this;
       studentResource.save({student: this.student}).then(
@@ -50,6 +64,22 @@ var Students = {
           that.errors = {};
           that.student = {};
           that.students.push(response.data);
+        },
+        function(response) {
+          that.errors = response.data.errors
+        }
+      )
+    },
+    parentUpdateStudent: function(student) {
+      var that = this;
+      studentResource.update({id: student.id}, student).then(
+        function(response) {
+          that.errors = {};
+          function MatchingId(student){
+            return student.id == response.data.id
+          }
+          var student = that.students.find(MatchingId);
+          student = response.data;
         },
         function(response) {
           that.errors = response.data.errors
@@ -72,6 +102,7 @@ var Students = {
           <ul class="list-unstyled">
             <li is="student-list-row"
               v-for="student in students"
+              :parentUpdateStudent="parentUpdateStudent"
               :student="student">
             </li>
           </ul>
