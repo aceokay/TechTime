@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
     @students = Student.all
     respond_to do |format|
       format.html
-      format.json { render :json => @students }
+      format.json { render json: @students }
     end
   end
 
@@ -14,9 +14,9 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.json do
         if @student.save
-          render :json => @student
+          render json: @student
         else
-          render :json => { errors: @student.errors.messages }, status: 422
+          render json: { errors: @student.errors.messages }, status: 422
         end
       end
     end
@@ -27,9 +27,9 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.json do
         if @student.update(student_params)
-          render :json => @student
+          render json: @student
         else
-          render :json => { :errors => @student.errors.messages }, :status => 422
+          render json: { errors: @student.errors.messages }, status: 422
         end
       end
     end
