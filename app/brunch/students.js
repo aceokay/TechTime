@@ -16,13 +16,18 @@ var ListRow = {
   },
   template: `
   <li>
-    <i class="fa fa-toggle-on" aria-hidden="true"></i>
-    <span v-if="editMode">
-      <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent(student)" ><br>
-    </span>
-    <span v-else @click="editMode = true">
-      {{ student.name }}
-    </span>
+    <div>
+      <span v-if="editMode">
+        <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent(student)" ><br>
+      </span>
+      <span v-else>
+        <i class="fa fa-times text-danger" aria-hidden="true"></i>
+        <i class="fa fa-toggle-on text-success" aria-hidden="true"></i>
+        <span @click="editMode = true">
+          {{ student.name }}
+        </span>
+      </span>
+    </div>
   </li>
   `
 }
