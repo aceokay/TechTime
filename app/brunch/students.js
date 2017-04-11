@@ -98,8 +98,10 @@ var Students = {
     <div class="col-sm-3">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          Students
+          <p class="text-center">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            Students
+          </p>
         </div>
         <div class="panel-body">
           <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="addStudent" placeholder="name"><br>
