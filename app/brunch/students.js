@@ -1,12 +1,16 @@
 var ListRow = {
   props: {
     student: Object,
-    parentUpdateStudent: Function
+    parentUpdateStudent: Function,
+    parentDeleteStudent: Function
   },
   methods: {
     updateStudent: function() {
       this.editMode = false;
       this.parentUpdateStudent(this.student);
+    },
+    deleteStudent: function() {
+      this.parentDeleteStudent(this.student);
     }
   },
   data: function() {
@@ -21,7 +25,7 @@ var ListRow = {
         <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent(student)" ><br>
       </span>
       <span v-else>
-        <i class="fa fa-times text-danger" aria-hidden="true"></i>
+        <i class="fa fa-times text-danger" @click="deleteStudent(student)" aria-hidden="true"></i>
         <i class="fa fa-toggle-on text-success" aria-hidden="true"></i>
         <span @click="editMode = true">
           {{ student.name }}
@@ -55,14 +59,7 @@ var Students = {
     )
   },
   methods: {
-    intialStudent: function() {
-      return {
-        student: {
-          name: ''
-        }
-      }
-    },
-    addStudent: function () {
+    addStudent: function() {
       var that = this;
       studentResource.save({student: this.student}).then(
         function(response) {
@@ -79,15 +76,29 @@ var Students = {
       var that = this;
       studentResource.update({id: student.id}, student).then(
         function(response) {
-          that.errors = {};
-          function MatchingId(student){
+          function MatchingId(student) {
             return student.id == response.data.id
-          }
+          };
+
+          that.errors = {};
           var student = that.students.find(MatchingId);
           student = response.data;
         },
         function(response) {
           that.errors = response.data.errors
+        }
+      )
+    },
+    parentDeleteStudent: function(student) {
+      var that = this;
+      studentResource.delete({id: student.id}).then(
+        function(response) {
+          // Grab the ID from the URL
+          var studentId = response.url.match("/students/([^-]+).json").pop();
+          function NotMatchingId(student) {
+            return student.id != studentId
+          };
+          that.students = that.students.filter(NotMatchingId);
         }
       )
     }
@@ -110,6 +121,7 @@ var Students = {
             <li is="student-list-row"
               v-for="student in students"
               :parentUpdateStudent="parentUpdateStudent"
+              :parentDeleteStudent="parentDeleteStudent"
               :student="student">
             </li>
           </ul>
