@@ -11,6 +11,14 @@ var ListRow = {
     },
     deleteStudent: function() {
       this.parentDeleteStudent(this.student);
+    },
+    skipStudent: function() {
+      if (this.student.skip == null || this.student.skip == false) {
+        this.student.skip = true;
+      } else {
+        this.student.skip = false;
+      }
+      this.parentUpdateStudent(this.student);
     }
   },
   data: function() {
@@ -22,11 +30,16 @@ var ListRow = {
   <li>
     <div>
       <span v-if="editMode">
-        <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent(student)" ><br>
+        <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="updateStudent()" ><br>
       </span>
       <span v-else>
-        <i class="fa fa-times text-danger" @click="deleteStudent(student)" aria-hidden="true"></i>
-        <i class="fa fa-toggle-on text-success" aria-hidden="true"></i>
+        <i class="fa fa-times text-danger" @click="deleteStudent()" aria-hidden="true"></i>
+        <span v-if="student.skip == false || student.skip == null">
+          <i class="fa fa-toggle-on text-success" @click="skipStudent()" aria-hidden="true"></i>
+        </span>
+        <span v-else>
+          <i class="fa fa-toggle-off text-danger" @click="skipStudent()" aria-hidden="true"></i>
+        </span>
         <span @click="editMode = true">
           {{ student.name }}
         </span>
