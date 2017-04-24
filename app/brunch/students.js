@@ -138,6 +138,9 @@ var Students = {
               :student="student">
             </li>
           </ul>
+          <button type="button" class="btn btn-success center-block">
+            Randomly Assign
+          </button>
         </div>
       </div>
     </div>
