@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  has_many :groups, through: :students_groups
+  has_many :assignments, through: :students_assignments
 
-  # attr_accessor :name, :count, :skip
+  validates :name, presence: true, uniqueness: true
 end
