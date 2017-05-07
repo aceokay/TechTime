@@ -2,6 +2,9 @@
 
 A simple tool for teachers to track and assign use of digital devices in a classroom
 
+## Development Notes
+* Reset Migrations: rake db:migrate:reset
+
 ### Technology
 * Rails 5
 * [Vue](https://vuejs.org/) front-end
