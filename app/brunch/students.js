@@ -1,4 +1,4 @@
-var ListRow = {
+var StudentListRow = {
   props: {
     student: Object,
     parentUpdateStudent: Function,
@@ -45,13 +45,12 @@ var ListRow = {
         </span>
       </span>
     </div>
-  </li>
-  `
+  </li>`
 }
 
 var Students = {
   components: {
-    'student-list-row': ListRow
+    'student-list-row': StudentListRow
   },
   data: function() {
     return {
@@ -63,11 +62,10 @@ var Students = {
     }
   },
   mounted: function() {
-    var that;
-    that = this;
+    var that = this;
     studentResource.get().then(
-      function (response) {
-        that.students = response.data
+      function(response) {
+        that.students = response.data;
       }
     )
   },
@@ -81,7 +79,7 @@ var Students = {
           that.students.push(response.data);
         },
         function(response) {
-          that.errors = response.data.errors
+          that.errors = response.data.errors;
         }
       )
     },
