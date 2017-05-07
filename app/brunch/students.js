@@ -81,7 +81,7 @@ var Students = {
         function(response) {
           that.errors = response.data.errors;
         }
-      )
+      );
     },
     parentUpdateStudent: function(student) {
       var that = this;
@@ -89,16 +89,16 @@ var Students = {
         function(response) {
           function MatchingId(student) {
             return student.id == response.data.id
-          };
+          }
 
           that.errors = {};
           var student = that.students.find(MatchingId);
           student = response.data;
         },
         function(response) {
-          that.errors = response.data.errors
+          that.errors = response.data.errors;
         }
-      )
+      );
     },
     parentDeleteStudent: function(student) {
       var that = this;
@@ -108,10 +108,10 @@ var Students = {
           var studentId = response.url.match("/students/([^-]+).json").pop();
           function NotMatchingId(student) {
             return student.id != studentId
-          };
+          }
           that.students = that.students.filter(NotMatchingId);
         }
-      )
+      );
     }
   },
   template: `
