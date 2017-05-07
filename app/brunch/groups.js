@@ -6,7 +6,8 @@ var GroupListRow = {
   },
   methods: {
     updateGroup: function() {
-
+      this.editMode = false;
+      this.parentUpdateGroup(this.group);
     },
     deleteGroup: function() {
 
@@ -68,8 +69,22 @@ var Groups = {
         }
       )
     },
-    parentUpdateGroup: function() {
+    parentUpdateGroup: function(group) {
+      var that = this;
+      groupResource.update({id: group.id}, group).then(
+        function(response) {
+          function MatchingId(group) {
+            return group.id = response.data.id
+          }
 
+          that.errors = {};
+          var group = that.groups.find(MatchingId);
+          group = response.data;
+        },
+        function(response) {
+          that.errors = response.data.errors;
+        }
+      )
     },
     parentDeleteGroup: function() {
 

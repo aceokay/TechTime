@@ -22,6 +22,19 @@ class GroupsController < ApplicationController
     end
   end
 
+  def update
+    @group = Group.find(params[:id])
+    respond_to do |format|
+      format.json do
+        if @group.update(group_params)
+          render json: @group
+        else
+          render json: { errors: @group.errors.messages }, status: 422
+        end
+      end
+    end
+  end
+
   private
 
   def group_params
