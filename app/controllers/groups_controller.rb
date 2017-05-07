@@ -1,0 +1,30 @@
+class GroupsController < ApplicationController
+  protect_from_forgery with: :null_session
+
+  def index
+    @groups = Group.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @groups }
+    end
+  end
+
+  def create
+    @group = Group.new(group_params)
+    respond_to do |format|
+      format.json do
+        if @group.save
+          render json: @group
+        else
+          render json: { errors: @group.errors.messages }, status: 422
+        end
+      end
+    end
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name)
+  end
+end
