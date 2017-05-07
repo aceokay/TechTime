@@ -12,12 +12,43 @@
 
 ActiveRecord::Schema.define(version: 20170221050249) do
 
+  create_table "assignments", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students_assignments", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "assignment_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["assignment_id"], name: "index_students_assignments_on_assignment_id"
+    t.index ["student_id"], name: "index_students_assignments_on_student_id"
+  end
+
+  create_table "students_groups", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "group_id"
     t.integer  "count"
     t.boolean  "skip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_students_groups_on_group_id"
+    t.index ["student_id"], name: "index_students_groups_on_student_id"
   end
 
 end
