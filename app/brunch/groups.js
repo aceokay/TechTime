@@ -10,7 +10,7 @@ var GroupListRow = {
       this.parentUpdateGroup(this.group);
     },
     deleteGroup: function() {
-
+      this.parentDeleteGroup(this.group);
     }
   },
   data: function() {
@@ -84,10 +84,20 @@ var Groups = {
         function(response) {
           that.errors = response.data.errors;
         }
-      )
+      );
     },
-    parentDeleteGroup: function() {
-
+    parentDeleteGroup: function(group) {
+      var that = this;
+      groupResource.delete({id: group.id}).then(
+        function(response) {
+          // Grab the ID from the URL
+          var groupId = response.url.match("/groups/([^-]+).json").pop();
+          function NotMatchingId(group) {
+            return group.id != groupId
+          }
+          that.groups = that.groups.filter(NotMatchingId);
+        }
+      )
     }
   },
   template: `

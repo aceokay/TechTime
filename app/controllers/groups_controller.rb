@@ -35,6 +35,13 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    Group.find(params[:id]).destroy
+    respond_to do |format|
+      format.json { render json: {}, status: :no_content }
+    end
+  end
+
   private
 
   def group_params
