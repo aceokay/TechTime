@@ -15,8 +15,11 @@ module.exports = {
       },
       order: {
         before: [
-          'app/brunch/vue_resources.js',
-
+          'app/brunch/vue_resources.js'
+        ],
+        after: [
+          'app/brunch/dashboard.js',
+          'app/brunch/vue_instance.js'
         ]
       }
     },
