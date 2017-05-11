@@ -2,7 +2,8 @@ var GroupListRow = {
   props: {
     group: Object,
     parentUpdateGroup: Function,
-    parentDeleteGroup: Function
+    parentDeleteGroup: Function,
+    parentSelectGroup: Function
   },
   methods: {
     updateGroup: function() {
@@ -11,6 +12,9 @@ var GroupListRow = {
     },
     deleteGroup: function() {
       this.parentDeleteGroup(this.group);
+    },
+    selectGroup: function() {
+      this.parentSelectGroup(this.group);
     }
   },
   data: function() {
@@ -27,13 +31,16 @@ var GroupListRow = {
       <span v-else>
         <i class="fa fa-times text-danger" @click="deleteGroup()" aria-hidden="true"></i>
         <i class="fa fa-pencil" aria-hidden="true" @click="editMode = true"></i>
-        {{ group.name }}
+        <span @click="selectGroup()">{{ group.name }}</span>
       </span>
     </div>
   </li>`
 }
 
 var Groups = {
+  props: {
+    selectGroup: Function
+  },
   components: {
     'group-list-row': GroupListRow
   },
@@ -98,6 +105,9 @@ var Groups = {
           that.groups = that.groups.filter(NotMatchingId);
         }
       )
+    },
+    parentSelectGroup: function(selectedGroup) {
+      this.selectGroup(selectedGroup);
     }
   },
   template: `
@@ -119,6 +129,7 @@ var Groups = {
               v-for="group in groups"
               :parentUpdateGroup="parentUpdateGroup"
               :parentDeleteGroup="parentDeleteGroup"
+              :parentSelectGroup="parentSelectGroup"
               :group="group">
             </li>
           </ul>

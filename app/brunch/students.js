@@ -115,31 +115,28 @@ var Students = {
     }
   },
   template: `
-  <div>
-    <br>
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <p class="text-center">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-            Students
-          </p>
-        </div>
-        <div class="panel-body">
-          <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="addStudent" placeholder="name"><br>
-          <span style="color:red">{{ errors.name }}</span>
-          <ul class="list-unstyled">
-            <li is="student-list-row"
-              v-for="student in students"
-              :parentUpdateStudent="parentUpdateStudent"
-              :parentDeleteStudent="parentDeleteStudent"
-              :student="student">
-            </li>
-          </ul>
-          <button type="button" class="btn btn-success center-block">
-            Randomly Assign
-          </button>
-        </div>
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p class="text-center">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          Students
+        </p>
+      </div>
+      <div class="panel-body">
+        <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="addStudent" placeholder="name"><br>
+        <span style="color:red">{{ errors.name }}</span>
+        <ul class="list-unstyled">
+          <li is="student-list-row"
+            v-for="student in students"
+            :parentUpdateStudent="parentUpdateStudent"
+            :parentDeleteStudent="parentDeleteStudent"
+            :student="student">
+          </li>
+        </ul>
+        <button type="button" class="btn btn-success center-block">
+          Randomly Assign
+        </button>
       </div>
     </div>
   </div>`

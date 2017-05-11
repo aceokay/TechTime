@@ -12,10 +12,19 @@ var Dashboard = {
     }
   },
   methods: {
-    selectGroup: function() {
-
+    selectGroup: function(selectedGroup) {
+      this.group = selectedGroup;
     }
   },
   template: `
-  <groups-list></groups-list>`
+  <div>
+    <groups-list
+      :selectGroup="selectGroup">
+    </groups-list>
+    <div v-if="group.id != null">
+      <students-list
+        :group="group">
+      </students-list>
+    </div>
+  </div>`
 }
