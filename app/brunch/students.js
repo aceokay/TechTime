@@ -49,6 +49,9 @@ var StudentListRow = {
 }
 
 var Students = {
+  props: {
+    group: Object
+  },
   components: {
     'student-list-row': StudentListRow
   },
@@ -63,7 +66,7 @@ var Students = {
   },
   mounted: function() {
     var that = this;
-    studentResource.get().then(
+    studentResource.get({groupId: this.group.id}).then(
       function(response) {
         that.students = response.data;
       }
@@ -72,7 +75,7 @@ var Students = {
   methods: {
     addStudent: function() {
       var that = this;
-      studentResource.save({student: this.student}).then(
+      studentResource.save({groupId: this.group.id}, this.student).then(
         function(response) {
           that.errors = {};
           that.student = {};
@@ -85,7 +88,7 @@ var Students = {
     },
     parentUpdateStudent: function(student) {
       var that = this;
-      studentResource.update({id: student.id}, student).then(
+      studentResource.update({groupId: this.group.id, studentId: student.id}, student).then(
         function(response) {
           function MatchingId(student) {
             return student.id == response.data.id
@@ -102,7 +105,7 @@ var Students = {
     },
     parentDeleteStudent: function(student) {
       var that = this;
-      studentResource.delete({id: student.id}).then(
+      studentResource.delete({groupId: this.group.id, studentId: student.id}).then(
         function(response) {
           // Grab the ID from the URL
           var studentId = response.url.match("/students/([^-]+).json").pop();
