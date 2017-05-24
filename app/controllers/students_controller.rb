@@ -2,7 +2,8 @@ class StudentsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    @students = Student.all
+    @group = Group.find(params[:group_id])
+    @students = @group.students
     respond_to do |format|
       format.html
       format.json { render json: @students }
@@ -10,7 +11,9 @@ class StudentsController < ApplicationController
   end
 
   def create
+    @group = Group.find(params[:group_id])
     @student = Student.new(student_params)
+    @group.students.push(@student)
     respond_to do |format|
       format.json do
         if @student.save
