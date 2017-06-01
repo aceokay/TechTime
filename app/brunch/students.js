@@ -64,15 +64,23 @@ var Students = {
       errors: {}
     }
   },
+  watch: {
+    group: function() {
+      this.renderStudents();
+    }
+  },
   mounted: function() {
-    var that = this;
-    studentResource.get({groupId: this.group.id}).then(
-      function(response) {
-        that.students = response.data;
-      }
-    )
+    this.renderStudents();
   },
   methods: {
+    renderStudents: function() {
+      var that = this;
+      studentResource.get({groupId: this.group.id}).then(
+        function(response) {
+          that.students = response.data;
+        }
+      )
+    },
     addStudent: function() {
       var that = this;
       studentResource.save({groupId: this.group.id}, this.student).then(
