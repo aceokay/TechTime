@@ -79,7 +79,7 @@ var Students = {
         function(response) {
           that.students = response.data;
         }
-      )
+      );
     },
     addStudent: function() {
       var that = this;
@@ -135,7 +135,7 @@ var Students = {
         </p>
       </div>
       <div class="panel-body">
-        <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="addStudent" placeholder="name"><br>
+        <input class="form-control" type="text" v-model="student.name" v-on:keyup.enter="addStudent" placeholder="Student Name"><br>
         <span style="color:red">{{ errors.name }}</span>
         <ul class="list-unstyled">
           <li is="student-list-row"

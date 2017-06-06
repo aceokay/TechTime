@@ -122,7 +122,7 @@ var Groups = {
           </p>
         </div>
         <div class="panel-body">
-          <input class="form-control" type="text" v-model="group.name" v-on:keyup.enter="addGroup" placeholder="name"><br>
+          <input class="form-control" type="text" v-model="group.name" v-on:keyup.enter="addGroup" placeholder="Group Name"><br>
           <span style="color:red">{{ errors.name }}</span>
           <ul class="list-unstyled">
             <li is="group-list-row"
