@@ -4,6 +4,6 @@ const Vue = require("vue/dist/vue.common.js");
 
 // Here we will declare all our resources
 Vue.use(require('vue-resource'));
-// var assignmentResource = Vue.resource('/assignments{/id}.json');
+var assignmentResource = Vue.resource('/groups{/groupId}/assignments{/id}.json');
 var groupResource = Vue.resource('/groups{/id}.json');
 var studentResource = Vue.resource('/groups{/groupId}/students{/studentId}.json');
