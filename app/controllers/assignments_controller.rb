@@ -25,6 +25,26 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def update
+    @assignment = Assignment.find(params[:id])
+    respond_to do |format|
+      format.json do
+        if @assignment.update(assignment_params)
+          render json: @assignment
+        else
+          render json: { errors: @assignment.errors.messages }, status: 422
+        end
+      end
+    end
+  end
+
+  def destroy
+    Assignment.find(params[:id]).destroy
+    respond_to do |format|
+      format.json { render json: {}, status: :no_content }
+    end
+  end
+
   private
 
   def assignment_params

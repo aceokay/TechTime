@@ -1,6 +1,17 @@
 var AssignmentListRow = {
   props: {
-    assignment: Object
+    assignment: Object,
+    parentUpdateAssignment: Function,
+    parentDeleteAssignment: Function
+  },
+  methods: {
+    updateAssignment: function() {
+      this.editMode = false;
+      this.parentUpdateAssignment(this.assignment);
+    },
+    deleteAssignment: function() {
+      this.parentDeleteAssignment(this.assignment);
+    }
   },
   data: function() {
     return {
@@ -68,6 +79,36 @@ var Assignments = {
           that.errors = response.data.errors;
         }
       );
+    },
+    parentUpdateAssignment: function(assignment) {
+      var that = this;
+      assignmentResource.update({groupId: this.group.id, assignmentId: assignment.id}, assignment).then(
+        function(response) {
+          function MatchingId(assignment) {
+            return assignment.id == response.data.id
+          }
+
+          that.errors = {};
+          var assignment = that.assignments.find(MatchingId);
+          assignment = response.data;
+        },
+        function(response) {
+          that.errors = response.data.errors;
+        }
+      );
+    },
+    parentDeleteAssignment: function(assignment) {
+      var that = this;
+      assignmentResource.delete({groupId: this.group.id, assignmentId: assignment.id}).then(
+        function(response) {
+          // Grab the ID from the URL
+          var assignmentId = response.url.match("/assignments/([^-]+).json").pop();
+          function NotMatchingId(assignment) {
+            return assignment.id != assignmentId
+          }
+          that.assignments = that.assignments.filter(NotMatchingId);
+        }
+      );
     }
   },
   template: `
@@ -85,6 +126,8 @@ var Assignments = {
         <ul class="list-unstyled">
           <li is="assignment-list-row"
             v-for="assignment in assignments"
+            :parentUpdateAssignment="parentUpdateAssignment"
+            :parentDeleteAssignment="parentDeleteAssignment"
             :assignment="assignment">
           </li>
         </ul>
