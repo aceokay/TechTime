@@ -1,6 +1,6 @@
 var Dashboard = {
   components: {
-    // 'assignments-list': Assignments,
+    'assignments-list': Assignments,
     'groups-list': Groups,
     'students-list': Students
   },
@@ -25,6 +25,9 @@ var Dashboard = {
       <students-list
         :group="group">
       </students-list>
+      <assignments-list
+        :group="group">
+      </assignments-list>
     </div>
   </div>`
 }
