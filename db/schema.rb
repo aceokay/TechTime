@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170221050249) do
 
   create_table "students", force: :cascade do |t|
     t.string   "name"
+    t.boolean  "skip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
