@@ -13,11 +13,7 @@ var StudentListRow = {
       this.parentDeleteStudent(this.student);
     },
     skipStudent: function() {
-      if (this.student.skip == null || this.student.skip == false) {
-        this.student.skip = true;
-      } else {
-        this.student.skip = false;
-      }
+      this.student.skip ? this.student.skip = false : this.student.skip = true;
       this.parentUpdateStudent(this.student);
     }
   },
@@ -34,11 +30,11 @@ var StudentListRow = {
       </span>
       <span v-else>
         <i class="fa fa-times text-danger" @click="deleteStudent()" aria-hidden="true"></i>
-        <span v-if="student.skip == false || student.skip == null">
-          <i class="fa fa-toggle-on text-success" @click="skipStudent()" aria-hidden="true"></i>
+        <span v-if="student.skip">
+          <i class="fa fa-toggle-off text-danger" @click="skipStudent()" aria-hidden="true"></i>
         </span>
         <span v-else>
-          <i class="fa fa-toggle-off text-danger" @click="skipStudent()" aria-hidden="true"></i>
+          <i class="fa fa-toggle-on text-success" @click="skipStudent()" aria-hidden="true"></i>
         </span>
         <span @click="editMode = true">
           {{ student.name }}
@@ -59,7 +55,8 @@ var Students = {
     return {
       students: [],
       student: {
-        name: ''
+        name: '',
+        skip: Boolean
       },
       errors: {}
     }
