@@ -1,8 +1,7 @@
 class Student < ActiveRecord::Base
-  has_many :students_groups, class_name: StudentsGroups
-  has_many :groups, through: :students_groups
-  has_many :students_assignments, class_name: StudentsAssignments
-  has_many :assignments, through: :students_assignments
+  has_many :groups_students, class_name: GroupsStudents
+  has_many :groups, through: :groups_students
+  has_many :assignment_records
 
   validates :name, presence: true, uniqueness: true
 end

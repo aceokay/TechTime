@@ -1,4 +1,4 @@
-class AddStudents < ActiveRecord::Migration[5.0]
+class AddEverything < ActiveRecord::Migration[5.0]
   def change
     create_table :students do |t|
       t.string :name
@@ -11,11 +11,9 @@ class AddStudents < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    create_table :students_groups do |t|
+    create_table :groups_students do |t|
       t.belongs_to :student, index: true
       t.belongs_to :group, index: true
-      t.integer :count
-      t.boolean :skip
       t.timestamps
     end
 
@@ -25,7 +23,8 @@ class AddStudents < ActiveRecord::Migration[5.0]
       t.timestamps null: true
     end
 
-    create_table :students_assignments do |t|
+    create_table :assignment_records do |t|
+      t.integer :group_id
       t.belongs_to :student, index: true
       t.belongs_to :assignment, index: true
       t.timestamps
