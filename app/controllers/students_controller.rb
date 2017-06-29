@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @student = Student.new(student_params)
+    @student.skip = false
     @group.students.push(@student)
     respond_to do |format|
       format.json do
