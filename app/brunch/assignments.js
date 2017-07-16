@@ -36,7 +36,8 @@ var AssignmentListRow = {
 
 var Assignments = {
   props: {
-    group: Object
+    group: Object,
+    selectAssignments: Function
   },
   components: {
     'assignment-list-row': AssignmentListRow
@@ -64,6 +65,7 @@ var Assignments = {
       assignmentResource.get({groupId: this.group.id}).then(
         function(response) {
           that.assignments = response.data;
+          that.selectAssignments(response.data);
         }
       );
     },

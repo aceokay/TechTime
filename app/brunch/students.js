@@ -46,7 +46,8 @@ var StudentListRow = {
 
 var Students = {
   props: {
-    group: Object
+    group: Object,
+    selectStudents: Function
   },
   components: {
     'student-list-row': StudentListRow
@@ -75,6 +76,7 @@ var Students = {
       studentResource.get({groupId: this.group.id}).then(
         function(response) {
           that.students = response.data;
+          that.selectStudents(response.data);
         }
       );
     },

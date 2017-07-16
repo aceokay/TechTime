@@ -1,6 +1,7 @@
 var Dashboard = {
   components: {
     'assignments-list': Assignments,
+    'assignment-records-list': AssignmentRecords,
     'groups-list': Groups,
     'students-list': Students
   },
@@ -8,12 +9,20 @@ var Dashboard = {
     return {
       group: {
         name: ''
-      }
+      },
+      assignments: [],
+      students: []
     }
   },
   methods: {
     selectGroup: function(selectedGroup) {
       this.group = selectedGroup;
+    },
+    selectAssignments: function(assignments) {
+      this.assignments = assignments;
+    },
+    selectStudents: function(students) {
+      this.students = students;
     }
   },
   template: `
@@ -23,11 +32,18 @@ var Dashboard = {
     </groups-list>
     <div v-if="group.id != null">
       <students-list
-        :group="group">
+        :group="group"
+        :selectStudents="selectStudents">
       </students-list>
       <assignments-list
-        :group="group">
+        :group="group"
+        :selectAssignments="selectAssignments">
       </assignments-list>
+      <assignment-records-list
+        :group="group"
+        :assignments="assignments"
+        :students="students">
+      </assignment-records-list>
     </div>
   </div>`
 }
