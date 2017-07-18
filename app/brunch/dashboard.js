@@ -18,6 +18,7 @@ var Dashboard = {
   methods: {
     selectGroup: function(selectedGroup) {
       this.group = selectedGroup;
+      this.displayAssignmentRecords = false;
     },
     selectAssignments: function(assignments) {
       this.assignments = assignments;
