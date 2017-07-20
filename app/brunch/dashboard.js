@@ -24,6 +24,9 @@ var Dashboard = {
     },
     selectStudents: function(students) {
       this.students = students;
+    },
+    studentsAndAssignmentsReady: function() {
+      return this.students.length != 0 && this.assignments.length != 0;
     }
   },
   template: `
@@ -40,11 +43,13 @@ var Dashboard = {
         :group="group"
         :selectAssignments="selectAssignments">
       </assignments-list>
-      <assignment-records-list
-        :group="group"
-        :assignments="assignments"
-        :students="students">
-      </assignment-records-list>
+      <div v-if="this.studentsAndAssignmentsReady()">
+        <assignment-records-list
+          :group="group"
+          :assignments="assignments"
+          :students="students">
+        </assignment-records-list>
+      </div>
     </div>
   </div>`
 }
