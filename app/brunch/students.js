@@ -48,8 +48,7 @@ var Students = {
   props: {
     group: Object,
     displayAssignmentRecords: Boolean,
-    selectStudents: Function,
-    updateDisplayAssignmentRecords: Function
+    selectStudents: Function
   },
   components: {
     'student-list-row': StudentListRow
@@ -146,7 +145,7 @@ var Students = {
             :student="student">
           </li>
         </ul>
-        <button @click="this.updateDisplayAssignmentRecords" type="button" class="btn btn-success center-block">
+        <button type="button" class="btn btn-success center-block">
           Randomly Assign
         </button>
       </div>

@@ -7,7 +7,6 @@ var Dashboard = {
   },
   data: function() {
     return {
-      displayAssignmentRecords: false,
       group: {
         name: ''
       },
@@ -25,9 +24,6 @@ var Dashboard = {
     },
     selectStudents: function(students) {
       this.students = students;
-    },
-    updateDisplayAssignmentRecords: function() {
-      this.displayAssignmentRecords = !this.displayAssignmentRecords;
     }
   },
   template: `
@@ -39,20 +35,17 @@ var Dashboard = {
       <students-list
         :group="group"
         :selectStudents="selectStudents"
-        :displayAssignmentRecords="displayAssignmentRecords"
-        :updateDisplayAssignmentRecords="updateDisplayAssignmentRecords">
+        :displayAssignmentRecords="displayAssignmentRecords">
       </students-list>
       <assignments-list
         :group="group"
         :selectAssignments="selectAssignments">
       </assignments-list>
-      <div v-if="displayAssignmentRecords">
-        <assignment-records-list
-          :group="group"
-          :assignments="assignments"
-          :students="students">
-        </assignment-records-list>
-      </div>
+      <assignment-records-list
+        :group="group"
+        :assignments="assignments"
+        :students="students">
+      </assignment-records-list>
     </div>
   </div>`
 }
