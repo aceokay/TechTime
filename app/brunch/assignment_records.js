@@ -42,7 +42,7 @@ var AssignmentRecords = {
   methods: {
     renderAssignmentRecords: function() {
       var that = this;
-      assignmentRecordResource.get({groupId: this.group.id}).then(
+      assignmentRecordResource.save({groupId: this.group.id}, {}).then(
         function(response) {
           that.assignmentRecords = response.data;
         }

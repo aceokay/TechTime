@@ -3,23 +3,33 @@ class AssignmentRecordsController < ApplicationController
 
   def index
     # Grab all the day old AssignmentRecords, if there are any...
-    @recentAssignmentRecords = AssignmentRecord
-                      .where(group_id: params[:group_id])
-                      .where("created_at >= ?", Time.zone.now.beginning_of_day)
-
-    # Check to see if there are none for today, make new ones if not.
-    noRecentAssignmentRecordsExist = @recentAssignmentRecords.empty?
-    if noRecentAssignmentRecordsExist
-      # Make some new AssignmentRecords!
-      @recentAssignmentRecords = randomlyAssignStudents
-    end
+    @recentAssignmentRecords = findRecentAssignmentRecords
 
     respond_to do |format|
       format.json { render json: @recentAssignmentRecords }
     end
   end
 
+  def create
+    # Grab all the day old AssignmentRecords, if there are any...
+    recentAssignmentRecords = findRecentAssignmentRecords
+    # Delete each returned recentAssignmentRecord before making new ones...
+    recentAssignmentRecords.destroy_all
+    # Make some new Assignment Records
+    @newAssignmentRecords = randomlyAssignStudents
+
+    respond_to do |format|
+      format.json { render json: @newAssignmentRecords }
+    end
+  end
+
   private
+
+  def findRecentAssignmentRecords
+    return AssignmentRecord
+                    .where(group_id: params[:group_id])
+                    .where("created_at >= ?", Time.zone.now.beginning_of_day)
+  end
 
   # Assigns as many students as possible to available Assignments through
   # AssignmentRecords. Tries to stay as random as possible.
