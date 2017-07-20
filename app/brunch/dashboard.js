@@ -34,8 +34,7 @@ var Dashboard = {
     <div v-if="group.id != null">
       <students-list
         :group="group"
-        :selectStudents="selectStudents"
-        :displayAssignmentRecords="displayAssignmentRecords">
+        :selectStudents="selectStudents">
       </students-list>
       <assignments-list
         :group="group"

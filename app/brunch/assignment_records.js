@@ -33,20 +33,31 @@ var AssignmentRecords = {
   },
   watch: {
     group: function() {
-      this.renderAssignmentRecords();
+      this.createAssignmentRecords();
     }
   },
   mounted: function() {
-    this.renderAssignmentRecords();
+    this.getAssignmentRecords();
   },
   methods: {
-    renderAssignmentRecords: function() {
+    getAssignmentRecords: function() {
+      var that = this;
+      assignmentRecordResource.get({groupId: this.group.id}).then(
+        function(response) {
+          that.assignmentRecords = response.data;
+        }
+      );
+    },
+    createAssignmentRecords: function() {
       var that = this;
       assignmentRecordResource.save({groupId: this.group.id}, {}).then(
         function(response) {
           that.assignmentRecords = response.data;
         }
       );
+    },
+    ableToAssign: function() {
+      return this.students.length != 0 && this.assignments.length != 0
     },
     findRecordedAssignment: function(record) {
       function matchingId(assignment) {
@@ -61,6 +72,13 @@ var AssignmentRecords = {
       }
 
       return this.students.find(matchingId);
+    },
+    buttonText: function() {
+      if (this.assignments == 0) {
+        return "Create New Assignments!"
+      } else {
+        return "Redo Assignments!"
+      }
     }
   },
   template: `
@@ -80,6 +98,11 @@ var AssignmentRecords = {
             :student="findRecordedStudent(assignmentRecord)">
           </li>
         </ul>
+        <div v-if="this.ableToAssign()">
+          <button @click="this.createAssignmentRecords()" type="button" class="btn btn-success center-block">
+            {{ this.buttonText() }}
+          </button>
+        </div>
       </div>
     </div>
   </div>`
