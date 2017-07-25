@@ -3,6 +3,7 @@
 A simple tool for teachers to track and assign use of digital devices in a classroom
 
 ## Development Notes
+* Setup Database anew: rake db:create db:migrate
 * Reset Migrations: rake db:migrate:reset
 
 ### Technology
