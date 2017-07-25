@@ -5,7 +5,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "set LOGGY_STACKS=true"
+    "start": "set LOGGY_STACKS=true",
+    "postinstall": "brunch build --production"
   },
   "dependencies": {
     "copycat-brunch": "^1.1.0",
