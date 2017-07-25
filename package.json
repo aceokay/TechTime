@@ -4,6 +4,9 @@
   "author": "Austin Kincaid",
   "version": "0.1.0",
   "license": "MIT",
+  "engines": {
+    "npm": "4.1.2"
+  },
   "scripts": {
     "start": "set LOGGY_STACKS=true",
     "postinstall": "brunch build --production"
