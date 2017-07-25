@@ -11,6 +11,8 @@ A simple tool for teachers to track and assign use of digital devices in a class
 * [Vue](https://vuejs.org/) front-end
 * [Vue-Strap](https://yuche.github.io/vue-strap/) scripts for styling
 * [Bootstrap 3](http://getbootstrap.com/) CSS for styling
+* [Font Awesome](http://fontawesome.io/) Icons
 * [npm-pipeline-rails](https://github.com/rstacruz/npm-pipeline-rails) asset tool
 * [Brunch](http://brunch.io/) build system
     * Add dependencies with: npm install --save-dev plugin-name
+* [Font Awesome Favicon Generator](https://paulferrett.com/fontawesome-favicon/) Favicon Generator
