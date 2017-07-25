@@ -8,11 +8,12 @@
     "npm": "4.1.2"
   },
   "scripts": {
-    "start": "set LOGGY_STACKS=true",
+    "brunch:start": "set LOGGY_STACKS=true",
     "postinstall": "brunch build --production"
   },
   "dependencies": {
     "brunch": "^2.5.1",
+    "babel-core": "^6.17.0",
     "copycat-brunch": "^1.1.0",
     "css-brunch": "^2.0.0",
     "font-awesome": "^4.7.0",
