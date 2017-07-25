@@ -12,8 +12,12 @@
     "postinstall": "brunch build --production"
   },
   "dependencies": {
+    "brunch": "^2.5.1",
     "copycat-brunch": "^1.1.0",
+    "css-brunch": "^2.0.0",
     "font-awesome": "^4.7.0",
+    "javascript-brunch": "^2.0.0",
+    "sass-brunch": "^2.10.4",
     "vue": "^2.2.1",
     "vue-brunch": "^2.0.1",
     "vue-resource": "^1.2.1",
@@ -22,10 +26,6 @@
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.0.0",
-    "brunch": "^2.5.1",
-    "css-brunch": "^2.0.0",
-    "javascript-brunch": "^2.0.0",
-    "loggy": "^1.0.2",
-    "sass-brunch": "^2.10.4"
+    "loggy": "^1.0.2"
   }
 }
