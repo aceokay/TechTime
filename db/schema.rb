@@ -12,14 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20170221050249) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "assignment_records", force: :cascade do |t|
     t.integer  "group_id"
     t.integer  "student_id"
     t.integer  "assignment_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["assignment_id"], name: "index_assignment_records_on_assignment_id"
-    t.index ["student_id"], name: "index_assignment_records_on_student_id"
+    t.index ["assignment_id"], name: "index_assignment_records_on_assignment_id", using: :btree
+    t.index ["student_id"], name: "index_assignment_records_on_student_id", using: :btree
   end
 
   create_table "assignments", force: :cascade do |t|
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 20170221050249) do
     t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_groups_students_on_group_id"
-    t.index ["student_id"], name: "index_groups_students_on_student_id"
+    t.index ["group_id"], name: "index_groups_students_on_group_id", using: :btree
+    t.index ["student_id"], name: "index_groups_students_on_student_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
