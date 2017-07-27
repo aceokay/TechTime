@@ -23,6 +23,9 @@ Rails.application.configure do
   # Command to install dependencies
   config.npm.install = ['npm install']
 
+  # Command to build production assets
+  config.npm.build = ['npm run build']
+
   # Command to start a file watcher
   config.npm.watch = ['npm run start']
 

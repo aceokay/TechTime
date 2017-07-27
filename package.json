@@ -9,8 +9,7 @@
   },
   "scripts": {
     "brunch:start": "set LOGGY_STACKS=true",
-    "build": "",
-    "postinstall": "brunch build --production"
+    "build": "brunch build --production"
   },
   "dependencies": {
     "brunch": "^2.5.1",
