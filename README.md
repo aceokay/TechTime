@@ -6,6 +6,11 @@ A simple tool for teachers to track and assign use of digital devices in a class
 * Setup Database anew: rake db:create db:migrate
 * Reset Migrations: rake db:migrate:reset
 
+## Heroku Commands
+* Launch to Heroku: git push heroku master
+* Logs: heroku logs -n 500
+* Run Rake tasks: heroku run rake db:migrate
+
 ### Technology
 * Rails 5
 * [Vue](https://vuejs.org/) front-end
