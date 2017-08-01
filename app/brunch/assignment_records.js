@@ -74,7 +74,7 @@ var AssignmentRecords = {
       return this.students.find(matchingId);
     },
     buttonText: function() {
-      if (this.assignments == 0) {
+      if (this.assignmentRecords.length == 0) {
         return "Create New Assignments!"
       } else {
         return "Redo Assignments!"
