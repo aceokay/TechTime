@@ -99,7 +99,7 @@ var AssignmentRecords = {
           </li>
         </ul>
         <div v-if="this.ableToAssign()">
-          <button @click="this.createAssignmentRecords()" type="button" class="btn btn-success center-block">
+          <button @click="this.createAssignmentRecords" type="button" class="btn btn-success center-block">
             {{ this.buttonText() }}
           </button>
         </div>
