@@ -38,8 +38,9 @@ module.exports = {
     }
   },
   plugins: {
-    copycat: { // copies to priv/static/fonts/
-      fonts: ["node_modules/font-awesome/fonts"]
+    copycat: { // copies to vendor/assets/fonts
+      fonts: ["node_modules/font-awesome/fonts"],
+      verbose : true
     }
   }
 }
